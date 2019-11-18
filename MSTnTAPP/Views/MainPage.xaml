@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            xmlns:plugin="clr-namespace:Plugin.Badge.Abstractions;assembly=Plugin.Badge.Abstractions"
+            xmlns:views="clr-namespace:MSTnTAPP.Views"
+            xmlns:chatbotViews="clr-namespace:MSTnTAPP.Views.ChatbotView"
+            xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+            ios:Page.UseSafeArea="true"
+            mc:Ignorable="d"
+            BarBackgroundColor="#FFFFFF"
+            NavigationPage.HasNavigationBar="false"
+            android:TabbedPage.IsSmoothScrollEnabled="True"
+            android:TabbedPage.IsSwipePagingEnabled="False"
+            android:TabbedPage.OffscreenPageLimit="5"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            x:Class="MSTnTAPP.Views.MainPage">
+    <NavigationPage Title="Home"
+                    IconImageSource="blacksquares">
+        <x:Arguments>
+            <views:HomePage />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="Notification"
+                    IconImageSource="notification"
+                    plugin:TabBadge.BadgeText="{Binding UnreadNotificationCount}"
+                    plugin:TabBadge.BadgeColor="{Binding BadgeColor}"
+                    plugin:TabBadge.BadgeTextColor="{Binding BadgeTextColor}">
+        <x:Arguments>
+            <views:NotificationPage />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="Ask Bob"
+                    IconImageSource="bob">
+        <x:Arguments>
+            <chatbotViews:ChatbotPage />
+        </x:Arguments>
+    </NavigationPage>
+</TabbedPage>

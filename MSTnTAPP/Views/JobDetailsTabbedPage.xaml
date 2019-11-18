@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c:CustomTabPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:c="clr-namespace:MSTnTAPP.CustomControl"
+             x:Class="MSTnTAPP.Views.JobDetailsTabbedPage"
+                 
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+            ios:Page.UseSafeArea="true"
+            xmlns:views="clr-namespace:MSTnTAPP.Views"
+            BarBackgroundColor="#104275"
+            android:TabbedPage.IsSmoothScrollEnabled="True"
+            android:TabbedPage.IsSwipePagingEnabled="True"
+            android:TabbedPage.OffscreenPageLimit="8"
+            NavigationPage.HasNavigationBar="True"
+            NavigationPage.HasBackButton="False">
+    <NavigationPage.TitleView>
+        <StackLayout  Orientation="Horizontal" Padding="0,15,12,15">
+            <Image Source="back"
+                               BackgroundColor="Transparent"
+                               HorizontalOptions="Start"
+                               WidthRequest="25"
+                               HeightRequest="25"
+                               VerticalOptions="CenterAndExpand">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnBackIconTapped"
+                                                      NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Label x:Name="JobName"
+                   Text="JA1234"
+                               Font="Bold,18"
+                               FontFamily="Rubik"
+                               FontAttributes="Bold"
+                               TextColor="#fff"
+                               HorizontalOptions="CenterAndExpand" 
+                               VerticalOptions="CenterAndExpand"/>
+            <Image Source="settings"
+                               BackgroundColor="Transparent"
+                               HorizontalOptions="End"
+                               WidthRequest="40"
+                               HeightRequest="40"
+                               Scale="0.55"
+                               VerticalOptions="StartAndExpand">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="settingsNavigation_Clicked"
+                                                      NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
+        </StackLayout>
+    </NavigationPage.TitleView>
+</c:CustomTabPage>

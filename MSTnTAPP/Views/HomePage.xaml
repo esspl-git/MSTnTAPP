@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MSTnTAPP.Views.HomePage"
+             xmlns:controls="clr-namespace:MSTnTAPP.CustomControl"
+             xmlns:renderers="clr-namespace:MSTnTAPP.CustomRenderer"
+             x:Name="HomePageView">
+    <NavigationPage.TitleView>
+        <!--Top bar Area-->
+        <StackLayout Orientation="Horizontal" Padding="0,15,0,15">
+            <Image Source="mvtSplash"
+                               BackgroundColor="Transparent"
+                               HorizontalOptions="Start" 
+                                WidthRequest="25"
+                               HeightRequest="25"
+                               VerticalOptions="CenterAndExpand">
+                <Image.Scale>
+                    <OnPlatform x:TypeArguments="x:Double"
+                                iOS="1.2"/>
+                </Image.Scale>
+
+            </Image>
+            <Label Text="Track &amp; Trace"
+                               Font="Bold,18"
+                               FontFamily="Rubik"
+                               FontAttributes="Bold"
+                               TextColor="#fff"
+                               HorizontalOptions="StartAndExpand" 
+                               VerticalOptions="CenterAndExpand"/>
+            <Image Source="settings"
+                               BackgroundColor="Transparent"
+                               HorizontalOptions="End"
+                               WidthRequest="40"
+                               HeightRequest="40"
+                               VerticalOptions="StartAndExpand">
+                <Image.Scale>
+                    <OnPlatform x:TypeArguments="x:Double"
+                                iOS="1.77"
+                                Android="0.55"
+                                />
+                </Image.Scale>
+
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnsettingsImageTapped"
+                                                      NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <renderers:GradientLayoutRenderer ColorsList="#104275,#104275,#104275,#104275,#104275,#104275,#6888a8,#a2b6ca,#F8F5FE,#F8F5FE,#F8F5FE"
+                                          Mode="ToBottom">
+            <ScrollView x:Name="rootLayout">
+                <StackLayout x:Name="mainContainer"  Orientation="Vertical" Padding="12,15,12,0">
+                    <Frame 
+                                   CornerRadius="12"
+                                   OutlineColor="#f6f6f7"
+                                   HasShadow="True"
+                                   Padding="10,12">
+                        <StackLayout Orientation="Vertical"
+                                             HorizontalOptions="FillAndExpand">
+                            <Label Text="Search"
+                                           FontFamily="Rubik"
+                                           FontSize="14"
+                                           FontAttributes="Bold"
+                                           TextColor="#868686"
+                                           HorizontalOptions="FillAndExpand" Margin="0,0,0,5"/>
+
+
+                            <Entry x:Name="SearchTerm"
+                                           FontSize="14"
+                                           FontFamily="Rubik"
+                                           Placeholder=""
+                                           TextColor="#104275"
+                                           VerticalOptions="FillAndExpand" 
+                                           Completed="SearchTerm_Completed"/>
+                            <controls:CustomPicker x:Name="SearchBy"
+                                                           HorizontalOptions="FillAndExpand"
+                                                           Image="downarrow"
+                                                           TextColor="#b7c6d5"
+                                                           HeightRequest="40"
+                                                           FontFamily="Rubik"
+                                                           Title="Select a criterion"
+                                                           FontSize="14"
+                                                           SelectedIndexChanged="SelectedPickervalueChanged"
+                                                           ItemsSource="{Binding SearchTypeList}"
+                                                           ItemDisplayBinding="{Binding Label}"/>
+
+                            <Frame Padding="0"
+                                               Margin="0,5,0,0"
+                                               CornerRadius="7">
+                                <Frame.HasShadow>
+                                    <OnPlatform x:TypeArguments="x:Boolean"
+                                                            iOS="True"
+                                                            Android="True" />
+                                </Frame.HasShadow>
+                                <Frame.OutlineColor>
+                                    <OnPlatform x:TypeArguments="Color"
+                                                            Android="#cecece" />
+                                </Frame.OutlineColor>
+
+
+                                <Button Text="SEARCH"      
+                    Clicked="SearchButtonClicked"
+                    BackgroundColor="#37A531"
+                    CornerRadius="7"             
+                        FontSize="14"
+                     FontFamily="Rubik"
+                        HeightRequest="40"
+                    HorizontalOptions = "FillAndExpand"
+                    VerticalOptions="StartAndExpand"
+                    TextColor="#fff"/>
+                            </Frame>
+
+                        </StackLayout>
+                    </Frame>
+                    <Frame x:Name="ListFrame"
+                           IsVisible="False"
+                                   Margin="0,10,0,0"
+                                   CornerRadius="12"
+                                   Padding="10,8"
+                                   OutlineColor="#f6f6f7"
+                                   HasShadow="True"
+                                   VerticalOptions="FillAndExpand">
+                        <StackLayout Orientation="Vertical">
+                            <Label
+                                            Text="Search Result"
+                                               FontSize="14"
+                                            FontFamily="Rubik"
+                                               TextColor="#868686"
+                                               HorizontalOptions="StartAndExpand" />
+                            <ListView x:Name="shipmentList" 
+                                      ItemsSource="{Binding SearchList}" 
+                                      HeightRequest="10" RowHeight="85" 
+                                      HasUnevenRows="True" ItemTapped="SearchList_IteamTapped">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Grid Margin="6,10" VerticalOptions="CenterAndExpand">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="50" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="12" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <Image x:Name="searchlistShipmentIcon"
+                                                               Grid.Column="0"
+                                                               HeightRequest="12"
+                                                               WidthRequest="12"
+                                                               Source="{Binding ShipmentImage}" />
+                                                <StackLayout Grid.Column="1" Padding="20,0,0,0"
+                                                                     Orientation="Vertical">
+                                                    <Label Text="{Binding JobReferenceNumber}"
+                                                                   HorizontalOptions="FillAndExpand"
+                                                                   FontAttributes="Bold"
+                                                                   FontSize="16"
+                                                                   FontFamily="Rubik"
+                                                                   TextColor="#333333" />
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Text="{Binding {Binding Place_Date}}"
+                                                                       HorizontalOptions="StartAndExpand"
+                                                                       VerticalOptions="Center"
+                                                                       FontSize="14"
+                                                                        FontFamily="Rubik"
+                                                                       TextColor="#868686" />
+                                                    </StackLayout>
+                                                </StackLayout>
+                                                <Image Grid.Column="2"
+                                                               x:Name="arrowIcon"
+                                                               HeightRequest="4"
+                                                               WidthRequest="4"
+                                                               Source="next" />
+
+                                            </Grid>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <ActivityIndicator x:Name="SearchLoader"
+                                        IsVisible="{Binding ISBusy}"
+                                        IsRunning="{Binding ISBusy}"
+                                        Color="#104275"
+                                        VerticalOptions="CenterAndExpand"
+                                        HorizontalOptions="CenterAndExpand" />
+                            <Button x:Name="btnViewMore" Clicked="OnViewMore" Text="View More" BackgroundColor="#e1f0f7" TextColor="#0286C0" BorderColor="#0387c0"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame x:Name="RecentListFrame"
+                                   Margin="0,10,0,10"
+                                   CornerRadius="12"
+                                   Padding="10,8"
+                                   OutlineColor="#f6f6f7"
+                                   HasShadow="True"
+                                   HeightRequest="450">
+                        <StackLayout Orientation="Vertical">
+                            <Label
+                                            Text="Recent Search"
+                                               FontSize="14"
+                                            FontFamily="Rubik"
+                                               TextColor="#868686"
+                                               HorizontalOptions="StartAndExpand" />
+
+
+
+                            <ListView ItemsSource="{Binding RecentSearches}"  ItemTapped="SearchList_IteamTapped" RowHeight="85" HasUnevenRows="True">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Grid Margin="6,10" VerticalOptions="CenterAndExpand">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="50" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="12" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <Image x:Name="searchlistShipmentIcon"
+                                                               Grid.Column="0"
+                                                               HeightRequest="12"
+                                                               WidthRequest="12"
+                                                               Source="{Binding ShipmentImage}" />
+                                                <StackLayout Grid.Column="1" Padding="20,0,0,0"
+                                                                     Orientation="Vertical">
+                                                    <Label Text="{Binding JobReferenceNumber}"
+                                                                   HorizontalOptions="FillAndExpand"
+                                                                   FontAttributes="Bold"
+                                                                   FontSize="16"
+                                                                   FontFamily="Rubik"
+                                                                   TextColor="#333333" />
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Text="{Binding Place_Date}"
+                                                                       HorizontalOptions="StartAndExpand"
+                                                                       VerticalOptions="Center"
+                                                                       FontSize="14"
+                                                                        FontFamily="Rubik"
+                                                                       TextColor="#868686" />
+                                                    </StackLayout>
+                                                </StackLayout>
+                                                <Image Grid.Column="2"
+                                                               x:Name="arrowIcon"
+                                                               HeightRequest="4"
+                                                               WidthRequest="4"
+                                                               Source="next" />
+
+                                            </Grid>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+            <StackLayout x:Name="loaderlayout" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="False">
+                <BoxView HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" HeightRequest="18" VerticalOptions="Start"></BoxView>
+                <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <ActivityIndicator x:Name="DetailsLoader"
+                                        IsVisible="True"
+                                        IsRunning="True"
+                                        Color="#104275"
+                                        VerticalOptions="CenterAndExpand"
+                                        HorizontalOptions="CenterAndExpand" />
+                </Frame>
+            </StackLayout>
+        </renderers:GradientLayoutRenderer>
+    </ContentPage.Content>
+</ContentPage>

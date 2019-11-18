@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MSTnTAPP.Views.JobDetailsViews.Document">
+    <ContentView.Content>
+        <StackLayout VerticalOptions="FillAndExpand" Margin="0,0,0,10">
+            <Frame x:Name="ListContentView" VerticalOptions="FillAndExpand" 
+                   BorderColor="#efefef"
+                                   CornerRadius="12"
+                                   HasShadow="True"
+                                   Padding="8"
+                   IsVisible="True">
+                <ListView x:Name="DocumentList"
+                                              HasUnevenRows="False"
+                                              SelectionMode="None"
+                                              ItemsSource="{Binding DocumentItems}"
+                                              RowHeight="85"
+                          VerticalOptions="FillAndExpand"
+                                              ItemTapped="DocumentList_ItemTapped"
+                                              VerticalScrollBarVisibility="Never">
+
+
+                    <ListView.ItemTemplate >
+                        <DataTemplate >
+                            <ViewCell >
+                                <Grid Margin="6,10" VerticalOptions="CenterAndExpand">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="30" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image
+                                       HeightRequest="12"
+                                        WidthRequest="12"
+                                        Grid.Column="0"
+                                           Source="{Binding ExtentionImage}" />
+
+                                    <StackLayout Grid.Column="1" Padding="20,0,0,0"
+                                                                     Orientation="Vertical">
+                                        <Label Text="{Binding DocumentName}"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        FontSize="16"
+                                                        FontFamily="Rubik"
+                                                        TextColor="#333333" />
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding DocumentSize}"
+                                                                       HorizontalOptions="Start"
+                                                                       VerticalOptions="Center"
+                                                                       FontSize="14"
+                                                                         FontFamily="Rubik"
+                                                                       TextColor="#868686" />
+                                            <Label Text="|"
+                                                                       HorizontalOptions="Start"
+                                                                       FontSize="16" />
+                                            <Label Text="{Binding DocumentDate}"
+                                                                       HorizontalOptions="StartAndExpand"
+                                                                       VerticalOptions="Center"
+                                                                       FontSize="14"
+                                                   FontFamily="Rubik"
+                                                                       TextColor="#868686" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Vertical" Grid.Column="2">
+                                        <Image
+                                        x:Uid="{Binding URL}" 
+                                       HeightRequest="30"
+                                       WidthRequest="30"
+                                       Source="show"
+                                        VerticalOptions="Start"
+                                        IsVisible="{Binding isShown}">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="Download_Tapped"
+                                                      NumberOfTapsRequired="1" CommandParameter="{Binding .}"/>
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                        <Image
+                                        x:Name="{Binding URL}" 
+                                       HeightRequest="30"
+                                       WidthRequest="30"
+                                       Source="download"
+                                            VerticalOptions="Start">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="Download_Tapped"
+                                                      NumberOfTapsRequired="1"/>
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                    </StackLayout>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Frame>
+            <StackLayout x:Name="documentwebview" Orientation="Vertical"
+                         IsVisible="False" VerticalOptions="FillAndExpand">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <Image Source="back"
+                               BackgroundColor="Transparent"
+                               HorizontalOptions="Start"
+                               WidthRequest="40"
+                               HeightRequest="40"
+                               Scale="0.4"
+                               VerticalOptions="StartAndExpand">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="webviewClose_Tapped"
+                                                              NumberOfTapsRequired="1" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    <Label x:Name="DocHeader"
+                               Font="Bold,18"
+                               FontAttributes="Bold"
+                               TextColor="#fff"
+                               HorizontalOptions="StartAndExpand" 
+                               VerticalOptions="CenterAndExpand">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="webviewClose_Tapped"
+                                                      NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <ActivityIndicator x:Name="Indicator" 
+                                       IsRunning="True" 
+                                       HorizontalOptions="End"
+                                       IsVisible="True" Color="#fff"></ActivityIndicator>
+                    </StackLayout>
+                
+                <Frame CornerRadius="12"
+                       HasShadow="True"
+                       Padding="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0,5,0,0">
+                    <WebView x:Name="PDFViewer" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Navigated="PDFViewer_Navigated"></WebView>
+                </Frame>
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

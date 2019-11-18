@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MSTnTAPP.Views.JobDetailsViews.ReferenceView">
+    <ContentView.Content>
+        <StackLayout VerticalOptions="FillAndExpand">
+            <Frame VerticalOptions="FillAndExpand" 
+                   BorderColor="#efefef"
+                                   CornerRadius="12"
+                                   HasShadow="True"
+                                   Padding="8"
+                   Margin="0,0,0,10"
+                   IsVisible="{Binding isLoaded}">
+                <ListView
+                HasUnevenRows="False"
+                SelectionMode="None"
+                ItemsSource="{Binding ReferenceList}"
+                RowHeight="50"
+                    VerticalOptions="FillAndExpand" IsEnabled="False"
+                VerticalScrollBarVisibility="Never">
+                    <ListView.ItemTemplate>
+                        <DataTemplate >
+                            <ViewCell>
+                                <Grid Margin="2,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding Name}" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" FontFamily="Rubik" FontSize="14" TextColor="#868686" />
+                                    <Label Text="{Binding Value}" Grid.Column="1" HorizontalOptions="End" VerticalOptions="CenterAndExpand" FontFamily="Rubik" FontSize="14" TextColor="#104275" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Frame>
+            <StackLayout x:Name="loaderlayout"
+                         HorizontalOptions="FillAndExpand"
+                         VerticalOptions="FillAndExpand"
+                         IsVisible="{Binding isBusy}">
+                <BoxView HorizontalOptions="FillAndExpand"
+                         BackgroundColor="Transparent"
+                         HeightRequest="18"
+                         VerticalOptions="Start"></BoxView>
+                <Frame HorizontalOptions="FillAndExpand"
+                       VerticalOptions="FillAndExpand">
+                    <ActivityIndicator x:Name="DetailsLoader"
+                                       IsVisible="True"
+                                       IsRunning="True"
+                                       Color="#104275"
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="CenterAndExpand" />
+                </Frame>
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

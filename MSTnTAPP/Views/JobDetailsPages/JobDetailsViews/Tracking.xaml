@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MSTnTAPP.Views.JobDetailsViews.Tracking">
+    <ContentView.Content>
+        <StackLayout>
+            <StackLayout IsVisible="{Binding isLoaded}">
+            <ListView
+                HasUnevenRows="False"
+                SelectionMode="None"
+                ItemsSource="{Binding TrackingList}"
+                RowHeight="170"
+                BackgroundColor="Transparent"
+                VerticalScrollBarVisibility="Never"
+                SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate >
+                        <ViewCell>
+                            <Frame BorderColor="#efefef"
+                                   CornerRadius="12"
+                                   HasShadow="True"
+                                   Padding="10,15"
+                                   Margin="0,0,0,20">
+                                <StackLayout>
+                                    <StackLayout Margin="0,0,0,20" Orientation="Horizontal">
+                                        <Image HeightRequest="17"
+                                               WidthRequest="17"
+                                               Source="{Binding StatusPointer}" 
+                                               HorizontalOptions="Start"
+                                               VerticalOptions="CenterAndExpand"/>
+                                        <Label Text="{Binding LocationType}"
+                                               HorizontalOptions="FillAndExpand"
+                                               Margin="2,0,0,0"
+                                               FontSize="14"
+                                               FontFamily="Rubik"
+                                               TextColor="#333333"
+                                               VerticalOptions="StartAndExpand"/>
+                                        <StackLayout Margin="0,0,5,0" Orientation="Horizontal" HorizontalOptions="End">
+                                            <Image HeightRequest="15"
+                                               WidthRequest="15"
+                                               Source="locationgrey" 
+                                               HorizontalOptions="Start"
+                                               VerticalOptions="CenterAndExpand"/>
+                                            <Label Text="{Binding LocationName}"
+                                               HorizontalOptions="FillAndExpand"
+                                               FontSize="14"
+                                               FontFamily="Rubik"
+                                               TextColor="#868686"
+                                               VerticalOptions="CenterAndExpand"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image HeightRequest="14"
+                                               WidthRequest="14"
+                                               Source="clock" 
+                                               HorizontalOptions="Start"
+                                               VerticalOptions="CenterAndExpand"/>
+                                        <Label Text="{Binding Original}"
+                                               HorizontalOptions="FillAndExpand"
+                                               Margin="2,0,0,0"
+                                               FontSize="14"
+                                               FontFamily="Rubik"
+                                               TextColor="#868686"
+                                               VerticalOptions="CenterAndExpand"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image HeightRequest="14"
+                                               WidthRequest="14"
+                                               Source="clock"
+                                               HorizontalOptions="Start"
+                                               VerticalOptions="CenterAndExpand"/>
+                                        <Label Text="{Binding Current}"
+                                               HorizontalOptions="FillAndExpand"
+                                               Margin="2,0,0,0"
+                                               FontSize="14"
+                                               FontFamily="Rubik"
+                                               TextColor="#868686"
+                                               VerticalOptions="CenterAndExpand"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image HeightRequest="14"
+                                               WidthRequest="14"
+                                               Source="clock"
+                                               HorizontalOptions="Start"
+                                               VerticalOptions="CenterAndExpand"/>
+                                        <Label Text="{Binding Actual}"
+                                               HorizontalOptions="FillAndExpand"
+                                               Margin="2,0,0,0"
+                                               FontSize="14"
+                                               FontFamily="Rubik"
+                                               TextColor="#868686"
+                                               VerticalOptions="CenterAndExpand"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+        <StackLayout x:Name="loaderlayout"
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="FillAndExpand"
+                     IsVisible="{Binding isBusy}">
+            <BoxView HorizontalOptions="FillAndExpand"
+                     BackgroundColor="Transparent"
+                     HeightRequest="18"
+                     VerticalOptions="Start"></BoxView>
+            <Frame HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand">
+                <ActivityIndicator x:Name="DetailsLoader"
+                                   IsVisible="True"
+                                   IsRunning="True"
+                                   Color="#104275"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="CenterAndExpand" />
+            </Frame>
+        </StackLayout>
+            </StackLayout>
+    </ContentView.Content>
+</ContentView>

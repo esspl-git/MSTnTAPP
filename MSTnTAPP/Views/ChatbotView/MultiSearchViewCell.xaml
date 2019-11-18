@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+          mc:Ignorable="d"
+          x:Class="MSTnTAPP.Views.ChatbotView.MultiSearchViewCell">
+    <Grid RowSpacing="0"
+          ColumnSpacing="0"
+          BackgroundColor="White"
+          Rotation="180"
+          FlowDirection="LeftToRight"
+          VerticalOptions="Fill"
+          HorizontalOptions="Fill">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Image Grid.Column="0"
+               Source="mvtlogo"
+               WidthRequest="50"
+               HeightRequest="50"
+               VerticalOptions="Start"
+               Margin="10,0,0,10" />
+        <Frame Grid.Column="1"
+               BackgroundColor="#2472C1"
+               Padding="10"
+               HasShadow="true"
+               Margin="10"
+               BorderColor="#40707C97"
+               CornerRadius="10"
+               VerticalOptions="FillAndExpand"
+               HeightRequest="790">
+            <Grid RowSpacing="0"
+                  ColumnSpacing="0"
+                  BackgroundColor="Transparent"
+                  VerticalOptions="Fill"
+                  HorizontalOptions="Fill"
+                  Margin="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0"
+                       Text="{Binding Text}"
+                       TextColor="#fff" />
+                <BoxView Grid.Row="1"
+                         BackgroundColor="#fff"
+                         HeightRequest="1" Margin="0,5,0,0"></BoxView>
+                <ListView Grid.Row="2"
+                          IsVisible="True"
+                          x:Name="MultiSearchTemplateList"
+                          HasUnevenRows="True"
+                          SelectionMode="None"
+                          ItemsSource="{Binding SearchedItems}"
+                          VerticalScrollBarVisibility="Never"
+                          BackgroundColor="Transparent"
+                          Margin="0,10,0,0"
+                          SeparatorColor="#fff">
+
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid  RowSpacing="0"
+                                       ColumnSpacing="0"
+                                       BackgroundColor="Transparent"
+                                       Margin="6,10"
+                                       VerticalOptions="CenterAndExpand">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Row="0"
+                                           Text="{Binding Text}"
+                                           TextColor="#fff" />
+                                    <Button Grid.Row="1"
+                                            Text="Go To Details"
+                                            BackgroundColor="#fff"
+                                            CornerRadius="7"
+                                            FontSize="14"
+                                            FontFamily="Rubik"
+                                            HeightRequest="40"
+                                            HorizontalOptions="End"
+                                            VerticalOptions="StartAndExpand"
+                                            TextColor="#2472C1"
+                                            Margin="0,5,0,0"
+                                            Command="{Binding GoToDetailsCommand}"
+                                            CommandParameter="{Binding ShipmentObj}"
+                                            BorderColor="#173BCD" />
+
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </Frame>
+    </Grid>
+</ViewCell>

@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Pages:AnimationPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:renderers="clr-namespace:MSTnTAPP.CustomRenderer"
+             xmlns:Pages="clr-namespace:FormsControls.Base;assembly=FormsControls.Base"
+              NavigationPage.HasNavigationBar="false" 
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             mc:Ignorable="d"
+             x:Class="MSTnTAPP.Views.Logout">
+    <renderers:GradientLayoutRenderer 
+    ColorsList="#104275,#104275,#345f8a,#6888a8,#a2b6ca,#fff,#fff,#fff,#fff,#fff,#fff,#fff"
+    Mode="ToTop">
+        <AbsoluteLayout VerticalOptions="FillAndExpand"
+                         HorizontalOptions="FillAndExpand">
+            <FlexLayout JustifyContent="SpaceAround" VerticalOptions="CenterAndExpand">
+                <!-- Place new controls here -->
+
+                <StackLayout Padding="15,15" Orientation="Vertical" VerticalOptions="FillAndExpand">
+                    <StackLayout  Orientation="Horizontal" 
+                              Padding="0,12">
+
+                        <Image Source="backGrey"
+                               BackgroundColor="Transparent"
+                               HorizontalOptions="StartAndExpand"
+                                WidthRequest="25"
+                               HeightRequest="25"
+                               VerticalOptions="StartAndExpand">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnBackIconTapped"
+                                                      NumberOfTapsRequired="1" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                      
+
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical"
+                         VerticalOptions="CenterAndExpand" >
+
+                        <Image x:Name="Logoimage"
+               Source="mvtlogo"
+               Margin="0,0,0,0"
+               WidthRequest="80"
+               HeightRequest="80"
+               HorizontalOptions="CenterAndExpand"
+               VerticalOptions="Fill"/>
+
+                        <Label Margin="0,0,0,0"
+               VerticalOptions="Fill"
+               FontSize="16"
+               FontFamily="Rubik"
+               TextColor="#808080"
+               HorizontalTextAlignment="Center"
+               StyleClass="TextFont"
+            Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur vulputate morbi scelerisque aliquam massa nunc tortor. Mauris, neque, lorem blandit faucibus tortor ac. Feugiat a, in urna at aliquet a. Mauris est tristique risus pellentesque vitae ac quisque habitant habitasse."/>
+
+                    </StackLayout>
+
+
+                    <StackLayout Orientation="Vertical"
+                                 Margin="0,0,0,0"
+                         VerticalOptions="CenterAndExpand">
+                        <Frame Padding="0"
+                               Margin="0,5,0,0"
+                               CornerRadius="7" >
+                            <Frame.HasShadow>
+                                <OnPlatform x:TypeArguments="x:Boolean"
+                                iOS="True"
+                                Android="True" />
+                            </Frame.HasShadow>
+                            <Frame.OutlineColor>
+                                <OnPlatform x:TypeArguments="Color"
+                                Android="#f6f6f7" />
+                            </Frame.OutlineColor>
+
+                            <Button Text="SIGN OUT"      
+                    Clicked="OnLogoutButtonClicked"
+                    BackgroundColor="#37A531"
+                    CornerRadius="7"
+                    FontSize="14"
+                    FontFamily="Rubik"
+                    HeightRequest="40"
+                    HorizontalOptions = "FillAndExpand"
+                    VerticalOptions="StartAndExpand"
+                    TextColor="#fff"/>
+
+                        </Frame>
+                        
+
+
+                    </StackLayout>
+
+
+                    <StackLayout Padding="0,0,0,15" Orientation="Vertical" VerticalOptions="EndAndExpand">
+
+                        <Label HorizontalOptions="Center" 
+                               Margin="0,0,0,0"
+                               FontFamily="Rubik"
+                                Text="Version 2.0.1"
+                               TextColor="#fff"
+                               HorizontalTextAlignment="Center"
+                                  VerticalOptions="EndAndExpand"/>
+
+                    </StackLayout>
+                </StackLayout>
+
+            </FlexLayout>
+            <AbsoluteLayout x:Name="activityLoader" BackgroundColor="#C0808080"
+                    AbsoluteLayout.LayoutBounds="0.5,0.5,1,1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    IsVisible="False">
+                <ActivityIndicator x:Name="ActivityIndicator"
+                           IsRunning="True"
+                               HeightRequest="60"
+                           AbsoluteLayout.LayoutBounds="0.5,0.5,0.1,0.1"
+                           AbsoluteLayout.LayoutFlags="All"
+                            Color="#0286C0"
+                            VerticalOptions="Start"
+                            HorizontalOptions="CenterAndExpand" />
+            </AbsoluteLayout>
+        </AbsoluteLayout>
+    </renderers:GradientLayoutRenderer>
+</Pages:AnimationPage>

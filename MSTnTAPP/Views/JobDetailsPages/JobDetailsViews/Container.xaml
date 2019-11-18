@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MSTnTAPP.Views.JobDetailsViews.Container">
+    <ContentView.Content>
+        <StackLayout VerticalOptions="FillAndExpand" Orientation="Vertical" Margin="0,0,0,10">
+            <StackLayout x:Name="MainContainer" VerticalOptions="FillAndExpand">
+                <ListView HasUnevenRows="False"
+                          SelectionMode="None"
+                          ItemsSource="{Binding ContainerMainItems}"
+                          RowHeight="260"
+                          BackgroundColor="Transparent"
+                          ItemTapped="ContainerList_ItemTapped"
+                          VerticalScrollBarVisibility="Never"
+                          SeparatorVisibility="None">
+                    <ListView.ItemTemplate >
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame VerticalOptions="FillAndExpand" 
+                   BorderColor="#efefef"
+                   CornerRadius="12"
+                   HasShadow="False"
+                   Padding="8"
+                                   Margin="0,0,0,20">
+                                    <StackLayout Orientation="Vertical">
+                                        <StackLayout Orientation="Horizontal" Margin="0,5,0,5">
+                                            <Label Text="{Binding ContainerName}"
+                                           HorizontalOptions="StartAndExpand"
+                                           FontSize="16"
+                                           FontFamily="Rubik"
+                                           TextColor="#333333" />
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                                                <Image HeightRequest="14"
+                                               WidthRequest="14"
+                                               Source="blueclock" 
+                                               HorizontalOptions="Start"
+                                               VerticalOptions="CenterAndExpand"/>
+                                                <Label Text="{Binding ContainerDate}"
+                                               HorizontalOptions="FillAndExpand"
+                                               Margin="2,0,0,0"
+                                               FontSize="14"
+                                               FontFamily="Rubik"
+                                               TextColor="#104275"
+                                               VerticalOptions="CenterAndExpand"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <ListView
+                                            Grid.Column="0"
+                                    HasUnevenRows="False"
+                                    SelectionMode="None"
+                                    ItemsSource="{Binding ContainerEnumList}"
+                                    RowHeight="25" IsEnabled="False"
+                                    VerticalScrollBarVisibility="Never"
+                                             SeparatorVisibility="None">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate >
+                                                    <ViewCell>
+                                                        <Grid Margin="2,2">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*" />
+                                                                <ColumnDefinition Width="*" />
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label Text="{Binding Key}" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" FontFamily="Rubik" FontSize="14" TextColor="#868686" />
+                                                            <Label Text="{Binding Value}" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" FontFamily="Rubik"  FontSize="14" TextColor="#104275" HorizontalTextAlignment="Start"/>
+                                                        </Grid>
+                                                    </ViewCell>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                        <Image
+                                            Grid.Column="1"
+                                            x:Name="showdetails" 
+                                            HeightRequest="35"
+                                            WidthRequest="35"
+                                            Source="roundshow"
+                                            VerticalOptions="End"
+                                            HorizontalOptions="End">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="Showdetails_Tapped"
+                                                      NumberOfTapsRequired="1"/>
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                    </StackLayout>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <StackLayout x:Name="SecondaryContainer" VerticalOptions="FillAndExpand" IsVisible="False">
+                <StackLayout  Orientation="Horizontal">
+                    <Image Source="back"
+                               BackgroundColor="Transparent"
+                               HorizontalOptions="Start"
+                               WidthRequest="40"
+                               HeightRequest="40"
+                               Scale="0.4"
+                               VerticalOptions="StartAndExpand">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ContainerBack_Tapped"
+                                                      NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="Back to Container Details"
+                               Font="Bold,18"
+                               FontAttributes="Bold"
+                               TextColor="#fff"
+                               HorizontalOptions="StartAndExpand" 
+                               VerticalOptions="CenterAndExpand">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ContainerBack_Tapped"
+                                                      NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+                <ListView
+                HasUnevenRows="False"
+                SelectionMode="None"
+                ItemsSource="{Binding ContainerLoadList}"
+                RowHeight="230"
+                    BackgroundColor="Transparent"
+                VerticalScrollBarVisibility="Never"
+                    SeparatorVisibility="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate >
+                            <ViewCell>
+                                <Frame VerticalOptions="FillAndExpand" 
+                                        BorderColor="#efefef"
+                                        CornerRadius="12"
+                                        HasShadow="True"
+                                        Padding="8"
+                                       Margin="0,10">
+                                    <ListView
+                                    HasUnevenRows="False"
+                                    SelectionMode="None"
+                                    ItemsSource="{Binding .}"
+                                    RowHeight="50" IsEnabled="False"
+                                    VerticalScrollBarVisibility="Never">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate >
+                                                <ViewCell>
+                                                    <Grid Margin="2,10">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="*" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label Text="{Binding Key}" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" FontFamily="Rubik" FontSize="14" TextColor="#868686" />
+                                                        <Label Text="{Binding Value}" Grid.Column="1" HorizontalOptions="End" VerticalOptions="CenterAndExpand" FontFamily="Rubik" FontSize="14" TextColor="#104275" />
+                                                    </Grid>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Pages:AnimationPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:renderers="clr-namespace:MSTnTAPP.CustomRenderer"
+             mc:Ignorable="d"
+             xmlns:Pages="clr-namespace:FormsControls.Base;assembly=FormsControls.Base"
+             NavigationPage.HasNavigationBar="false" 
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             x:Class="MSTnTAPP.Views.SigninPage">
+    
+    <renderers:GradientLayoutRenderer 
+    ColorsList="#104275,#104275,#345f8a,#6888a8,#a2b6ca,#fff,#fff,#fff,#fff,#fff,#fff,#fff"
+    Mode="ToTop">
+        <AbsoluteLayout VerticalOptions="FillAndExpand"
+                       
+                         HorizontalOptions="FillAndExpand">
+            <FlexLayout JustifyContent="SpaceAround" VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand">
+                <!-- Place new controls here -->
+
+                <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout Padding="15,15" Orientation="Vertical"
+                         VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" >
+
+                        <Image x:Name="Logoimage"
+               Source="mvtlogo"
+               Margin="0,0,0,0"
+               WidthRequest="80"
+               HeightRequest="80"
+               HorizontalOptions="CenterAndExpand"
+               VerticalOptions="Fill"/>
+
+                        <Label Margin="0,0,0,0"
+               VerticalOptions="Fill"   
+                               HorizontalOptions="FillAndExpand"
+               FontSize="16"
+            FontFamily="Rubik"
+               TextColor="#808080"
+               HorizontalTextAlignment="Center"
+               StyleClass="TextFont"
+            Text="Sign in to your account to track your shipment/job anywhere."/>
+
+                    </StackLayout>
+
+
+                    <StackLayout Orientation="Vertical" Padding="15,15"
+                                 Margin="0,0,0,0"
+                                 HorizontalOptions="FillAndExpand"
+                         VerticalOptions="CenterAndExpand">
+                        <Frame Padding="0"
+                               Margin="0,30,0,0"
+                               CornerRadius="7">
+                            <Frame.HasShadow>
+                                <OnPlatform x:TypeArguments="x:Boolean"
+                                iOS="True"
+                                Android="True" />
+                            </Frame.HasShadow>
+                            <Frame.OutlineColor>
+                                <OnPlatform x:TypeArguments="Color"
+                                Android="#f6f6f7" />
+                            </Frame.OutlineColor>
+                            <Button Text="SIGN IN"      
+                    Clicked="OnLoginButtonClicked"
+                    BackgroundColor="#37A531"
+                    CornerRadius="7"
+                        FontSize="14"
+                     FontFamily="Rubik"
+                        HeightRequest="40"
+                    HorizontalOptions = "FillAndExpand"
+                    VerticalOptions="StartAndExpand"
+                    TextColor="#fff"/>
+                        </Frame>
+                        <Frame Padding="0"
+                               Margin="0,8,0,0"
+                               CornerRadius="7">
+                           
+                            <Frame.HasShadow>
+                                <OnPlatform x:TypeArguments="x:Boolean"
+                                iOS="True"
+                                Android="True" />
+                            </Frame.HasShadow>
+                            <Frame.OutlineColor>
+                                <OnPlatform x:TypeArguments="Color"
+                                Android="#f6f6f7" />
+                            </Frame.OutlineColor>
+
+                            <Button Text="REGISTER YOUR INTEREST"
+                    Clicked="OnRegisterButtonClicked"
+                    
+                     CornerRadius="7"
+                        FontSize="14"
+                     FontFamily="Rubik"
+                         HeightRequest="40"
+                    BackgroundColor="#fff"
+                    TextColor="#104275"/>
+                        </Frame>
+                    </StackLayout>
+
+
+                    <StackLayout Padding="0,0,0,15" Orientation="Vertical" VerticalOptions="EndAndExpand">
+               
+                        <Label HorizontalOptions="Center" 
+                               Margin="0,0,0,0"
+
+                               HorizontalTextAlignment="Center"
+                                  VerticalOptions="EndAndExpand"
+                >
+                            <Label.FormattedText>
+                                <FormattedString> 
+                                    <Span Text="Terms &amp; Condition"
+                  TextColor="#fff" FontSize="16" FontFamily="Rubik">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TnCclicked" />
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                  
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                    </StackLayout>
+                </StackLayout>
+
+            </FlexLayout>
+            <AbsoluteLayout x:Name="activityLoader" BackgroundColor="#C0808080"
+                    AbsoluteLayout.LayoutBounds="0.5,0.5,1,1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    IsVisible="False">
+                <ActivityIndicator x:Name="ActivityIndicator"
+                           IsRunning="True"
+                               HeightRequest="60"
+                           AbsoluteLayout.LayoutBounds="0.5,0.5,0.1,0.1"
+                           AbsoluteLayout.LayoutFlags="All"
+                            Color="#104275"
+                            VerticalOptions="Start"
+                            HorizontalOptions="CenterAndExpand" />
+            </AbsoluteLayout>
+        </AbsoluteLayout>
+    </renderers:GradientLayoutRenderer>
+</Pages:AnimationPage>

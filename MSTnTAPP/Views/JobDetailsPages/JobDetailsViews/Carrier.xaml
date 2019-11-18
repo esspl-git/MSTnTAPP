@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MSTnTAPP.Views.JobDetailsViews.Carrier">
+    <ContentView.Content>
+        <StackLayout VerticalOptions="FillAndExpand">
+            <Frame VerticalOptions="FillAndExpand" 
+                   BorderColor="#efefef"
+                   Margin="0,0,0,10"
+                                   CornerRadius="12"
+                                   HasShadow="True"
+                   Padding="10,8,8,8"
+                   IsVisible="{Binding isLoaded}">
+                <ListView
+                    x:Name="CarrierListView"
+                    ItemsSource="{Binding CarrierList}"
+                    RowHeight="150"
+                    SeparatorVisibility="None"
+                    HasUnevenRows="False"
+                    SelectionMode="None"
+                    VerticalScrollBarVisibility="Never">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="3*" />
+                                    </Grid.RowDefinitions>
+                                    <Image 
+                                        Grid.Column="0" 
+                                        Grid.Row="0" Source="{Binding CarrierImage}" />
+                                    <Label
+                                        Margin="8,0,0,10"
+                                        Grid.Column="1"
+                                        Grid.Row="0"
+                                        Text="{Binding CarrierDate}" 
+                                        FontSize="16"
+                                        TextColor="#104275"
+                                        VerticalOptions="End"/>
+                                    <Image 
+                                        Grid.Column="0" 
+                                        Grid.Row="1" Source="gradline"
+                                        IsVisible="{Binding CarrierVisibility}"/>
+                                    <StackLayout 
+                                        Grid.Column="1" 
+                                        Grid.Row="1" Orientation="Vertical">
+                                        <Label
+                                        Margin="8,0,0,10"
+                                        Text="{Binding CarrierTitle}" 
+                                        FontSize="14"
+                                            FontFamily="Rubik"
+                                        TextColor="#333333"/>
+                                        <Label
+                                        Margin="8,0,0,10"
+                                        Text="{Binding CarrierDescription}" 
+                                        FontSize="14"
+                                            FontFamily="Rubik"
+                                        TextColor="#868686"/>
+                                    </StackLayout>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Frame>
+            <StackLayout x:Name="loaderlayout" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding isBusy}">
+                <BoxView HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" HeightRequest="18" VerticalOptions="Start"></BoxView>
+                <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <ActivityIndicator x:Name="DetailsLoader"
+                                        IsVisible="True"
+                                        IsRunning="True"
+                                        Color="#104275"
+                                        VerticalOptions="CenterAndExpand"
+                                        HorizontalOptions="CenterAndExpand" />
+                </Frame>
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

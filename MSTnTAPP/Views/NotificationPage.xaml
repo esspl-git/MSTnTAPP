@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:MSTnTAPP.Converter"
+             xmlns:renderers="clr-namespace:MSTnTAPP.CustomRenderer"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             mc:Ignorable="d"
+             x:Class="MSTnTAPP.Views.NotificationPage"
+             NavigationPage.HasNavigationBar="True"
+             x:Name="notificationPage">
+    <ContentPage.Resources>
+        <converters:StatusToColorConverter x:Key="StatusToColorConverter"></converters:StatusToColorConverter>
+    </ContentPage.Resources>
+    <NavigationPage.TitleView>
+        <!--Top bar Area-->
+        <StackLayout Orientation="Horizontal" Padding="0,15,0,15">
+
+            <Label Text="Notifications"
+                               Font="Bold,18"
+                               FontFamily="Rubik"
+                               FontAttributes="Bold"
+                               TextColor="#fff"
+                               HorizontalOptions="StartAndExpand" 
+                               VerticalOptions="CenterAndExpand"/>
+            <Image Source="settings"
+                               BackgroundColor="Transparent"
+                               HorizontalOptions="End"
+                               WidthRequest="40"
+                               HeightRequest="40"
+                               VerticalOptions="StartAndExpand">
+                <Image.Scale>
+                    <OnPlatform x:TypeArguments="x:Double"
+                                iOS="1.77"
+                                Android="0.55"
+                                />
+                </Image.Scale>
+
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnsettingsImageTapped"
+                                                      NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        
+        <renderers:GradientLayoutRenderer ColorsList="#104275,#104275,#104275,#104275,#104275,#104275,#6888a8,#a2b6ca,#fff,#fff,#fff"
+                                          Mode="ToBottom">
+            <!--<AbsoluteLayout x:Name="rootLayout"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">-->
+                 <Frame 
+                        CornerRadius="12"
+                        OutlineColor="#f6f6f7"
+                        Padding="0,15,0,0"
+                        BackgroundColor="#fff"
+                        HasShadow="True">
+
+                <StackLayout Orientation="Vertical"
+                             AbsoluteLayout.LayoutBounds="0,0,1,1"
+                             AbsoluteLayout.LayoutFlags="All">
+                  
+
+                    <!--UI Body Area-->
+                    <!--<ScrollView x:Name="scrollView"
+                                Orientation="Vertical"
+                                HorizontalOptions="FillAndExpand"
+                                HorizontalScrollBarVisibility="Never"
+                                VerticalOptions="FillAndExpand">-->
+              
+                    <StackLayout Orientation="Vertical"
+                                     HorizontalOptions="FillAndExpand"
+                                     VerticalOptions="StartAndExpand">
+                        <!--Notification Area-->
+                    
+                            <StackLayout Orientation="Vertical"
+                                             HorizontalOptions="FillAndExpand"
+                                             VerticalOptions="FillAndExpand" Padding="0,0,0,0">
+                                <Label Text="Nothing to show"
+                                           IsVisible="{Binding ShowEmptyMessage}"
+                                           TextColor="#1B5EAA"
+                                           VerticalTextAlignment="Center"
+                                           HorizontalTextAlignment="Center"
+                                           Margin="0,0,0,0"
+                                           HeightRequest="500"/>
+                                <ListView  x:Name="MasterNotificationList"
+                                       HasUnevenRows="True"
+                                       VerticalOptions="FillAndExpand"
+                                       ItemsSource="{Binding MasterNotifiactionList}"
+                                       GroupDisplayBinding="{Binding Title}"
+                                       GroupShortNameBinding="{Binding ShortName}"
+                                       IsGroupingEnabled="true"
+                                       SeparatorColor="#9D9A9A"
+                                       ItemSelected="OnNotificationSelected"
+                                       ItemTapped="OnNotificationTapped"
+                                       SelectionMode="Single"
+                                       IsVisible="{Binding HasNotification}"
+                                       IsPullToRefreshEnabled="True"
+                                       RefreshCommand="{Binding RefreshCommand}"
+                                       IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+                                <ListView.GroupHeaderTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Label Text="{Binding Title}"
+                                                   TextColor="#252525"
+                                                   FontAttributes="Bold"
+                                                   FontSize="Medium"
+                                                   Margin="10,10" />
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.GroupHeaderTemplate>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <ViewCell.ContextActions>
+                                                <MenuItem Clicked="OnDeleteAll"
+                                                          Text="Delete All"
+                                                          IsDestructive="True" />
+                                            </ViewCell.ContextActions>
+                                            <StackLayout Orientation="Vertical"
+                                                         BackgroundColor="{Binding IsRead, Converter={StaticResource StatusToColorConverter}}">
+                                                <Grid Padding="10"
+                                                      BackgroundColor="Transparent">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="*" />
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="Auto" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Image Grid.RowSpan="2"
+                                                           Source="{Binding ImageUrl}"
+                                                           HeightRequest="12"
+                                                           WidthRequest="12" />
+                                                    <Label Grid.Column="1"
+                                                           Text="{Binding Title}"
+                                                           TextColor="#252525" />
+                                                    <Label Grid.Column="2"
+                                                           Text="{Binding NotificationTimestamp}"
+                                                           HorizontalTextAlignment="End" />
+                                                    <Grid Grid.Row="1"
+                                                          Grid.Column="1"
+                                                          Grid.ColumnSpan="2"
+                                                          Padding="0"
+                                                          BackgroundColor="Transparent">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="Auto" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label Grid.Column="0"
+                                                               Text="{Binding Description}" />
+                                                        <Image Grid.Column="1"
+                                                               Source="delete"
+                                                               HeightRequest="20"
+                                                               WidthRequest="20"
+                                                               HorizontalOptions="End"
+                                                               VerticalOptions="Center">
+                                                            <Image.GestureRecognizers>
+                                                                <TapGestureRecognizer Tapped="OnDelete"
+                                                                                      CommandParameter="{Binding .}"
+                                                                                      NumberOfTapsRequired="1" />
+                                                            </Image.GestureRecognizers>
+                                                        </Image>
+                                                    </Grid>
+                                                </Grid>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            </StackLayout>
+                       
+                    </StackLayout>
+             
+                <!--</ScrollView>-->
+                </StackLayout>
+            </Frame>
+            <!--</AbsoluteLayout>-->
+        </renderers:GradientLayoutRenderer>
+    </ContentPage.Content>
+</ContentPage>

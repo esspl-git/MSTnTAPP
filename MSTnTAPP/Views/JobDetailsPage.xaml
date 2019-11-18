@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Pages:AnimationPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:renderers="clr-namespace:MSTnTAPP.CustomRenderer"
+             xmlns:Pages="clr-namespace:FormsControls.Base;assembly=FormsControls.Base"
+             xmlns:controls="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+             x:Class="MSTnTAPP.Views.JobDetailsPage"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+            ios:Page.UseSafeArea="true"
+             NavigationPage.HasNavigationBar="true"
+             NavigationPage.HasBackButton="False">
+    <NavigationPage.TitleView>
+        <StackLayout  Orientation="Horizontal" Padding="0,15,12,15">
+            <Image Source="back"
+                               BackgroundColor="Transparent"
+                               HorizontalOptions="Start"
+                               WidthRequest="25"
+                               HeightRequest="25"
+                               VerticalOptions="CenterAndExpand">
+                <Image.Scale>
+                    <OnPlatform x:TypeArguments="x:Double"
+                                iOS="1.2"/>
+                </Image.Scale>
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnBackIconTapped"
+                                                      NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Label x:Name="JobName"
+                   Text="JA1234"
+                               Font="Bold,18"
+                               FontFamily="Rubik"
+                               FontAttributes="Bold"
+                               TextColor="#fff"
+                               HorizontalOptions="CenterAndExpand" 
+                               VerticalOptions="CenterAndExpand"/>
+            <Image Source="settings"
+                               BackgroundColor="Transparent"
+                               HorizontalOptions="End"
+                               WidthRequest="40"
+                               HeightRequest="40"
+                               VerticalOptions="StartAndExpand">
+                <Image.Scale>
+                    <OnPlatform x:TypeArguments="x:Double"
+                                iOS="1.77"
+                                Android="0.55"
+                                />
+                </Image.Scale>
+
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="settingsNavigation_Clicked"
+                                                      NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <renderers:GradientLayoutRenderer ColorsList="#104275,#104275,#104275,#104275,#104275,#104275,#6888a8,#a2b6ca,#F8F5FE,#F8F5FE,#F8F5FE"
+                                          Mode="ToBottom" Padding="12,5,12,0">
+            
+            <ScrollView x:Name="scroll" Orientation="Horizontal" HorizontalScrollBarVisibility="Never" Margin="0,10,0,0">
+                <Grid BackgroundColor="Transparent"
+                         Padding="5,5,5,5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackLayout x:Name="OverviewContainer" Orientation="Vertical" Grid.Column="{Binding OverviewPosition}" Padding="5,0,5,0" IsVisible="{Binding OverviewVisible}">
+                        <Label x:Name="OverviewTab"
+                           Text="Overview"
+                           TextColor="White"
+                           FontSize="15"
+                               FontAttributes="Bold"
+                               FontFamily="Rubik"/>
+                        <BoxView x:Name="OverviewMarker" IsVisible="False" BackgroundColor="White"
+                                 HeightRequest="2"></BoxView>
+                    </StackLayout>
+                    <StackLayout x:Name="TrackingContainer" Orientation="Vertical" Grid.Column="{Binding TrackingPosition}"  Padding="5,0,5,0" IsVisible="{Binding TrackingVisible}">
+                        <Label x:Name="TrackingTab"
+                           Text="Tracking"
+                           TextColor="White"
+                                FontAttributes="Bold"
+                           FontSize="15"
+                               FontFamily="Rubik"/>
+                        <BoxView x:Name="TrackingMarker" IsVisible="False" BackgroundColor="White"
+                                 HeightRequest="1"></BoxView>
+                    </StackLayout>
+                    <StackLayout x:Name="AddressesContainer" Orientation="Vertical" Grid.Column="{Binding AddressesPosition}" Padding="5,0,5,0" IsVisible="{Binding AddressesVisible}">
+                        <Label x:Name="AddressesTab"
+                           Text="Addresses"
+                           TextColor="White"
+                                FontAttributes="Bold"
+                           FontSize="15"
+                               FontFamily="Rubik"/>
+                        <BoxView x:Name="AddressesMarker" IsVisible="False" BackgroundColor="White"
+                                 HeightRequest="1"></BoxView>
+                    </StackLayout>
+                    <StackLayout x:Name="ReferencesContainer" Orientation="Vertical" Grid.Column="{Binding ReferencesPosition}"  Padding="5,0,5,0" IsVisible="{Binding ReferencesVisible}">
+                        <Label x:Name="ReferencesTab"
+                           Text="References"
+                           TextColor="White"
+                                FontAttributes="Bold"
+                           FontSize="15"
+                               FontFamily="Rubik"/>
+                        <BoxView x:Name="ReferencesMarker" IsVisible="False" BackgroundColor="White"
+                                 HeightRequest="1"></BoxView>
+                    </StackLayout>
+                    <StackLayout x:Name="CarrierContainer" Orientation="Vertical" Grid.Column="{Binding CarrierPosition}" Padding="5,0,5,0" IsVisible="{Binding CarrierVisible}">
+                        <Label x:Name="CarrierTab"
+                           Text="Carrier"
+                           TextColor="White"
+                                FontAttributes="Bold"
+                           FontSize="15"
+                               FontFamily="Rubik"/>
+                        <BoxView x:Name="CarrierMarker" IsVisible="False" BackgroundColor="White"
+                                 HeightRequest="1"></BoxView>
+                    </StackLayout>
+                    <StackLayout x:Name="ContainerContainer" Orientation="Vertical" Grid.Column="{Binding ContainerPosition}"  Padding="5,0,5,0" IsVisible="{Binding ContainerVisible}">
+                        <Label x:Name="ContainerTab"
+                           Text="Container"
+                           TextColor="White"
+                                FontAttributes="Bold"
+                           FontSize="15"
+                               FontFamily="Rubik"/>
+                        <BoxView x:Name="ContainerMarker" IsVisible="False" BackgroundColor="White"
+                                 HeightRequest="1"></BoxView>
+                    </StackLayout>
+                    <StackLayout x:Name="DocumentContainer" Orientation="Vertical" Grid.Column="{Binding DocumentPosition}" Padding="5,0,5,0" IsVisible="{Binding DocumentVisible}">
+                        <Label x:Name="DocumentTab"
+                           Text="Document"
+                           TextColor="White"
+                                FontAttributes="Bold"
+                           FontSize="15"
+                               FontFamily="Rubik"/>
+                        <BoxView x:Name="DocumentMarker" IsVisible="False" BackgroundColor="White"
+                                 HeightRequest="1"></BoxView>
+                    </StackLayout>
+                    <StackLayout x:Name="MapContainer" Orientation="Vertical" Grid.Column="{Binding MapPosition}" Padding="5,0,5,0" IsVisible="{Binding MapVisible}">
+                        <Label x:Name="MapTab"
+                           Text="Map"
+                           TextColor="White"
+                                FontAttributes="Bold"
+                           FontSize="15"
+                               FontFamily="Rubik"/>
+                        <BoxView x:Name="MapMarker" IsVisible="False" BackgroundColor="White"
+                                 HeightRequest="1"></BoxView>
+                    </StackLayout>
+                </Grid>
+            </ScrollView>
+            <controls:CarouselViewControl 
+                Margin="0,3,0,0"
+                Orientation="Horizontal"
+                BackgroundColor='Transparent'
+                InterPageSpacing="10" 
+                x:Name="carousel"
+                ShowIndicators="False"
+                IsSwipeEnabled="True"
+                PositionSelected="carousel_PositionSelected"
+                ItemsSource="{Binding MyItemsSource}"
+                VerticalOptions="FillAndExpand" 
+                HorizontalOptions="FillAndExpand">
+            </controls:CarouselViewControl>
+        </renderers:GradientLayoutRenderer>
+    </ContentPage.Content>
+</Pages:AnimationPage>

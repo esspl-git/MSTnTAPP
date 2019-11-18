@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:MSTnTAPP.CustomControl"
+             mc:Ignorable="d"
+             x:Class="MSTnTApp.Views.Partials.ChatInputBarView">
+    <Grid RowSpacing="0"
+          ColumnSpacing="0"
+          BackgroundColor="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Frame CornerRadius="25"
+               Padding="10,0,10,0"
+               IsClippedToBounds="True"
+               HeightRequest="50"
+               WidthRequest="50"
+               BackgroundColor="#1A104275"
+               Grid.Row="0"
+               Grid.Column="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="9*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <controls:CustomEditor x:Name="chatTextInput"
+                                       Grid.Column="0"
+                                       Text="{Binding TextToSend}"
+                                       Margin="0"
+                                       TextColor="Black"
+                                       Keyboard="Chat"
+                                       HorizontalOptions="FillAndExpand"
+                                       PlaceholderColor="#8A104275"
+                                       Placeholder="Hey!! How can I help you ?"
+                                       BackgroundColor="Transparent"
+                                       IsSpellCheckEnabled="True"
+                                       IsTextPredictionEnabled="True"/>
+                <Image Source="send"
+                       Grid.Column="1"
+                       BackgroundColor="Transparent"
+                       HorizontalOptions="End"
+                       WidthRequest="35"
+                       HeightRequest="35"
+                       Scale="2.6"
+                       VerticalOptions="Center">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Handle_Completed"
+                                              NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+        </Frame>
+    </Grid>
+</ContentView>
