@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+  <item>
+
+    <bitmap
+        android:src="@drawable/Rectangle"
+        
+      android:scaleType="centerCrop"
+        android:tileMode="disabled"
+        android:gravity="fill"/>
+  </item>
+<item>
+
+  <bitmap
+      android:src="@drawable/SplashScreenLogo"
+       
+    android:scaleType="centerCrop"
+      android:tileMode="disabled"
+      android:gravity="center"/>
+</item>
+  <item android:bottom="45dp">
+    <bitmap
+        android:src="@drawable/afssSplash"
+        
+        android:tileMode="disabled"
+        android:gravity="bottom"/>
+  </item>
+
+</layer-list>
