@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "166017958845",
+    "firebase_url": "https://mstntapp-24d2e.firebaseio.com",
+    "project_id": "mstntapp-24d2e",
+    "storage_bucket": "mstntapp-24d2e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:166017958845:android:61d0c23de4a8995aeb08d4",
+        "android_client_info": {
+          "package_name": "com.companyname.mstntapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "166017958845-ggfdabjv5h19hld1r3s43uh2tij5ng96.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVY3xnLatzczLsyaHEFl9f-uv9235IMi4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "166017958845-ggfdabjv5h19hld1r3s43uh2tij5ng96.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
